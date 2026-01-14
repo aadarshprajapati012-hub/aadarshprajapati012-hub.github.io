@@ -231,7 +231,19 @@ canvas.ontouchstart=e=>{e.preventDefault(); flap();}
 jumpBtn.onclick=flap;
 document.getElementById("startBtn").onclick=startGame;
 
-loop();
+// =======================
+// IMAGE PRELOAD
+// =======================
+const allImages = [bgImg, birdImg, pipeTop1, pipeTop2, pipeBottom1, pipeBottom2];
+let imagesLoaded = 0;
+allImages.forEach(img => {
+  img.onload = () => {
+    imagesLoaded++;
+    if(imagesLoaded === allImages.length){
+      loop(); // start game loop only after all images load
+    }
+  }
+});
 </script>
 </body>
 </html>
